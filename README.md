@@ -1,6 +1,9 @@
-# Svelte + Vite
+# Axamini Svelte Frontend
+Detta repot innehåller en frontend för Axamini slutprojektet
 
-This template should help get you started developing with Svelte in Vite.
+# Svelte + Vite
+Axamini Frontenden använder Svelte+Vite
+
 
 ## Recommended IDE Setup
 
