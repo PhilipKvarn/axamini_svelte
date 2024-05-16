@@ -4,6 +4,7 @@
     import { machines } from "$lib/stores";
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
+    import MachineDropdown from './machine-dropdown.svelte';
 
     onMount(async () => {
     try {
@@ -13,19 +14,20 @@
       }
       const data = await response.json();
       machines.set(data);
+      console.log($machines)
     } catch (error) {
       console.error('Fetch error: ', error);
     }
   });
-
-  function showMachineCard(id){
+  const number = 4
+  /* function showMachineCard(id){
     const machine = $machines.find(machine => machine.id === id);
     if (machine) {
       machines.set(data)
     } else {
       console.error(`Machine with ID ${id} not found.`);
     }
-  }
+  } */
 
 </script>
 
@@ -43,12 +45,15 @@
         </Table.Header>
         <Table.Body>
             {#each $machines as machine }
-              <Table.Row on:click={() => showMachineCard(machine.id)}>
+              <Table.Row>
                 <Table.Cell class="font-medium">{machine.id}</Table.Cell>
-                <Table.Cell><a href="">{machine.name}</a></Table.Cell>
+                <Table.Cell>{machine.name}</Table.Cell>
                 <Table.Cell>{machine.mechanic_id}</Table.Cell>
                 <Table.Cell class="text-right">{machine.status}</Table.Cell>
                 <Table.Cell>{machine.urgency}</Table.Cell>
+                <Table.Cell>
+                  <MachineDropdown {machine}></MachineDropdown>
+                </Table.Cell>
               </Table.Row>
             {/each}
         </Table.Body>
