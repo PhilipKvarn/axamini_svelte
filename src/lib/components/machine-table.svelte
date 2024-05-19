@@ -5,26 +5,29 @@
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
     import MachineDropdown from './machine-dropdown.svelte';
+    import MachineForm from "./machine-form.svelte";
 
     onMount(async () => {
     try {
       const response = await fetch('http://localhost:1738/machines');
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
+      if (response.status != 200) {
+        throw new Error(response.statusText);
       }
       const data = await response.json();
       machines.set(data);
       console.log($machines)
     } catch (error) {
-      machines.set([{
-        id:'1',
-        name:'Svarv',
-        mechanic_id:'1',
-        status:'OK',
-        urgency:'URGENT'
-
-
-      }])
+      //  DUMMY MASKINER NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY MASKINER NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY MASKINER NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY MASKINER NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY MASKINER NÄR MAN INTE HAR IGÅNG DATABASEN 
+      machines.set([
+        { id: '1', name: 'Svarv', mechanic_id: '1', status: 'OK', urgency: 'URGENT' },
+        { id: '2', name: 'Fräs', mechanic_id: '2', status: 'Maintenance', urgency: 'NORMAL' },
+        { id: '3', name: 'Slipmaskin', mechanic_id: '3', status: 'OK', urgency: 'LOW' },
+        { id: '4', name: 'Borrmaskin', mechanic_id: '4', status: 'Repair', urgency: 'HIGH' }
+      ])
       console.error('Fetch error: ', error);
     }
   });
@@ -52,6 +55,7 @@
             <Table.Head>Ansvarig</Table.Head>
             <Table.Head class="text-right">Status</Table.Head>
             <Table.Head>Urgency</Table.Head>
+            <Table.Head><MachineForm></MachineForm></Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>

@@ -13,13 +13,26 @@
     export let machine;
     let dialogOpen = false;
     let alertOpen = false;
-    console.log(machine)
 
 
     //const machine = $machines.find(machine => machine.id == machineId);
 
-    function deleteMachine(){
+    function deleteMachine(id){
+      machines.update((currentMachines) => {
+        return currentMachines.filter(machine => machine.id !== id);
+      });
+    }
 
+    function updateMachine(updatedMachine){
+      machines.update(currentMachines => {
+        return currentMachines.map(machine => {
+          if (machine.id === updatedMachine.id) {
+            return { ...machine, ...updatedMachine };
+          }
+          return machine;
+        });
+      });
+      console.log("UPDATE: " + machines)
     }
     
 </script>
@@ -57,23 +70,23 @@
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Name</Label>
-          <Input id="name" value="{machine.name}" class="col-span-3" />
+          <Input id="name" bind:value={machine.name} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-          <Input id="mechanic_id" value="{machine.mechanic_id}" class="col-span-3" />
+          <Input id="mechanic_id" bind:value={machine.mechanic_id} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="status" class="text-right">Status</Label>
-          <Input id="status" value="{machine.status}" class="col-span-3" />
+          <Input id="status" bind:value={machine.status} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="urgency" class="text-right">Urgency</Label>
-          <Input id="urgency" value="{machine.urgency}" class="col-span-3" />
+          <Input  id="urgency" bind:value={machine.urgency} class="col-span-3" />
         </div>
       </div>
       <Dialog.Footer>
-        <Button type="submit">Save changes</Button>
+        <Button type="submit" on:click={() => updateMachine(machine)}>Save changes</Button>
       </Dialog.Footer>
     </Dialog.Content>
 </Dialog.Root>
@@ -88,7 +101,7 @@
     </AlertDialog.Header>
     <AlertDialog.Footer>
       <AlertDialog.Cancel>CANCEL</AlertDialog.Cancel>
-      <AlertDialog.Action class="bg-red-500" on:click{deleteMachine()} >DELETE</AlertDialog.Action>
+      <AlertDialog.Action class="bg-red-500" on:click={() => deleteMachine(machine.id)} >DELETE</AlertDialog.Action>
     </AlertDialog.Footer>
   </AlertDialog.Content>
 </AlertDialog.Root>
