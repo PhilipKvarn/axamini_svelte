@@ -1,4 +1,5 @@
 <script>
+  import { Router, Link, Route } from 'svelte-routing';
   import {Button} from "$lib/components/ui/button/index.js";
   import * as Sheet from "$lib/components/ui/sheet/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
@@ -21,18 +22,18 @@
         </Sheet.Description>
       </Sheet.Header>
       <div class="grid gap-4 py-4">
-        <div class="items-center">
+        <a href="/login"><div class="items-center">
           <Button variant="link" class="w-full text-2xl text-white font-semibold">Index</Button>
-        </div>
-        <div class="items-center">
-          <Button variant="link" class="w-full text-2xl text-white font-semibold">Machines</Button>
-        </div>
-        <div class="items-center">
-          <Button variant="link"  class="w-full text-2xl text-white font-semibold">Tasks</Button>
-        </div>
-        <div class="items-center">
-          <Button variant="link"  class="w-full text-2xl text-white font-semibold">Users</Button>
-        </div>
+        </div></a>
+        <a href="/machines"><div class="items-center">
+          <Button variant="link" to="/machines" class="w-full text-2xl text-white font-semibold">Machines</Button>
+        </div></a>
+        <a href="/tasks"><div class="items-center">
+          <Button variant="link" to="/tasks" class="w-full text-2xl text-white font-semibold">Tasks</Button>
+        </div></a>
+        <a href="/users"><div class="items-center">
+          <Button variant="link" to="/users" class="w-full text-2xl text-white font-semibold">Users</Button>
+        </div></a>
       </div>
       <Sheet.Footer>
         <!-- <Label class="text-xl text-white">AXAMINI CORPORATION</Label> -->
@@ -40,7 +41,7 @@
     </Sheet.Content>
   </Sheet.Root>  
   
-  <Label class="text-center flex-1 text-4xl text-white font-light m-auto">Maskiner</Label>
+  <Label class="text-center flex-1 text-4xl text-white font-light m-auto">AXAMINI</Label>
 
     
 

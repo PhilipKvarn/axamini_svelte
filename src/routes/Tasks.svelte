@@ -9,7 +9,11 @@
   
   
   <main>
-    <Table.Machines></Table.Machines>
+    <h1>WELCOME TO Tasks</h1>
+    <h1>WELCOME TO Tasks</h1>
+    <h1>WELCOME TO Tasks</h1>
+    <h1>WELCOME TO Tasks</h1>
+    <h1>WELCOME TO Tasks</h1>
   </main>
   
   
