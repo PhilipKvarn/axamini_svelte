@@ -22,6 +22,8 @@
 
         createNewTask(newTask)
 
+        
+
     }
 
     async function createNewTask(data){
