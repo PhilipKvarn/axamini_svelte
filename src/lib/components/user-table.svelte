@@ -23,9 +23,9 @@
       //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
       //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
       users.set([
-        { id: '1', name: 'Städa', next_execution_date: '24-08-12', interval_days: '7', execution_time: '120', machine_id:"1",description:"" },
-        { id: '2', name: 'Slipa', next_execution_date: '24-08-04', interval_days: '31', execution_time: '60', machine_id:"2",description:"" },
-        { id: '3', name: 'Betala Skatt', next_execution_date: '0', interval_days: '0', execution_time: '0', machine_id:"3",description:"Det finns ingen information att läsa här" },
+        { id: '1', name: 'skibidiohiorizzlet', telephone_number: '07072903441', email: 'skibidiohiorizzlet@axamini.com', company_name: 'AXAMINI'},
+        { id: '2', name: 'caerlsaen', telephone_number: '123123654', email: 'caerlsaen@corpcrop.com', company_name: 'CORP CORP'},
+        { id: '3', name: 'Randal Thymes', telephone_number: '1738', email: 'RandalThymas@EvilOrg', company_name: 'EVIL ORG'},
 
       ])
       console.error('Fetch error: ', error);
@@ -35,7 +35,7 @@
 
 <div>
     <Table.Root>
-        <Table.Caption>Lista av alla maskiner.</Table.Caption>
+        <Table.Caption>Lista av alla Users.</Table.Caption>
         <Table.Header>
           <Table.Row>
             <Table.Head class="w-[100px]">id</Table.Head>

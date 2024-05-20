@@ -4,7 +4,7 @@
     import { Label } from "$lib/components/ui/label/index.js";
     import { Input } from "$lib/components/ui/input/index.js";
 
-    import { machines } from "$lib/stores";
+    import { users } from "$lib/stores";
     import {Plus} from 'lucide-svelte';
 
     function handleSubmit(event){

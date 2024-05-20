@@ -35,7 +35,7 @@
 
 <div>
     <Table.Root>
-        <Table.Caption>Lista av alla maskiner.</Table.Caption>
+        <Table.Caption>Lista av alla tasks.</Table.Caption>
         <Table.Header>
           <Table.Row>
             <Table.Head class="w-[100px]">id</Table.Head>
