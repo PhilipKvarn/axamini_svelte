@@ -74,6 +74,5 @@
                     <Button class="bg-green-500" type="submit">CREATE MACHINE</Button>
                 </Dialog.Footer>
             </form>
-        
         </Dialog.Content>
     </Dialog.Root>
