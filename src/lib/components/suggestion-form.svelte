@@ -4,24 +4,24 @@
     import { Label } from "$lib/components/ui/label/index.js";
     import { Input } from "$lib/components/ui/input/index.js";
 
-    import { users } from "$lib/stores";
+    import { suggestions } from "$lib/stores";
     import {Plus} from 'lucide-svelte';
 
     function handleSubmit(event){
         
         const formData = new FormData(event.target);
 
-        const newUser = Object.fromEntries(formData.entries());
-        console.log(newUser)
+        const newSuggestion = Object.fromEntries(formData.entries());
+        console.log(newSuggestion)
 
-        createNewUser(newUser)
+        createNewSuggestion(newSuggestion)
 
     }
 
-    async function createNewUser(data){
+    async function createNewSuggestion(data){
 
         try {
-            const response = await fetch('http://localhost:1738/user',{
+            const response = await fetch('http://localhost:1738/suggestion',{
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -33,10 +33,10 @@
             if(response.status != 200){
                 throw error
             }
-            users.update(existingUsers => [...existingUsers, data]);
+            suggestions.update(existingSuggestions => [...existingSuggestions, data]);
         } catch (error) {
             console.log(error)
-            console.log("Couldn't create new user")
+            console.log("Couldn't create new suggestion")
         }
 
     }
@@ -49,9 +49,9 @@
         </Dialog.Trigger>
         <Dialog.Content class="sm:max-w-[425px]">
         <Dialog.Header>
-            <Dialog.Title>Create User</Dialog.Title>
+            <Dialog.Title>Create suggestion</Dialog.Title>
             <Dialog.Description>
-                Create a new user here. Click save when you're done.
+                Create a new suggestion here. Click save when you're done.
             </Dialog.Description>
         </Dialog.Header>
             <form on:submit|preventDefault={handleSubmit} class="grid gap-4 py-4">
@@ -60,19 +60,19 @@
                 <Input id="name" name="name" placeholder="" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="telephone_number" class="text-right">Phone Number</Label>
-                <Input id="telephone_number" name="telephone_number" placeholder="Phone Number" class="col-span-3" />
+                <Label for="creator_id" class="text-right">Creator ID</Label>
+                <Input id="creator_id" name="creator_id" placeholder="Creator ID" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="email" class="text-right">email</Label>
-                <Input id="email" type="email" name="email" placeholder="email" class="col-span-3" />
+                <Label for="machine_id" class="text-right">Machine ID</Label>
+                <Input id="machine_id" name="machine_id" placeholder="Machine ID" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="company_name" class="text-right">Company Name</Label>
-                <Input id="company_name" name="company_name" placeholder="Company Name" class="col-span-3" />
+                <Label for="description" class="text-right">Description</Label>
+                <Input id="description" name="description" placeholder="Description" class="col-span-3" />
                 </div>
                 <Dialog.Footer>
-                    <Button class="bg-green-500" type="submit">CREATE USER</Button>
+                    <Button class="bg-green-500" type="submit">CREATE SUGGESTION</Button>
                 </Dialog.Footer>
             </form>
         </Dialog.Content>

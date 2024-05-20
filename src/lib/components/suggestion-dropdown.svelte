@@ -1,5 +1,5 @@
 <script>
-    import { users } from "$lib/stores";
+    import { suggestions } from "$lib/stores";
     import {Ellipsis} from 'lucide-svelte';
     
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
@@ -10,17 +10,17 @@
     import * as AlertDialog from "$lib/components/ui/alert-dialog";
 
 
-    export let user;
+    export let suggestion;
     let dialogOpen = false;
     let alertOpen = false;
 
 
     //const machine = $machines.find(machine => machine.id == machineId);
 
-    async function deleteUser(id){
+    async function deleteSuggestion(id){
 
       try {
-            const response = await fetch('http://localhost:1738/user',{
+            const response = await fetch('http://localhost:1738/suggestion',{
             method: 'DELETE',
             credentials: 'include',
             headers: {
@@ -33,45 +33,45 @@
                 throw error
             }
 
-            users.update((currentUsers) => {
-              return currentUsers.filter(user => user.id !== id);
+            suggestions.update((currentSuggestions) => {
+              return currentSuggestions.filter(suggestion => suggestion.id !== id);
             });
 
         } catch (error) {
             console.log(error)
-            console.log("Couldn't create new user")
+            console.log("Couldn't create new suggestion")
         }
     }
 
-    async function updateUser(updatedUser){
-      console.log(updatedUser)
+    async function updateSuggestion(updatedSuggestion){
+      console.log(updatedSuggestion)
       try {
-            const response = await fetch('http://localhost:1738/user',{
+            const response = await fetch('http://localhost:1738/suggestion',{
             method: 'Put',
             credentials: 'include',
             headers: {
             'Content-Type': 'application/json',
             },
-            body: JSON.stringify(updatedUser),
+            body: JSON.stringify(updatedSuggestion),
             });
             console.log(response)
             if(response.status != 200){
                 throw error
             }
 
-            users.update(currentUsers => {
-              return currentUsers.map(user => {
-                if (user.id === updatedUser.id) {
-                  return { ...user, ...updatedUser };
+            suggestions.update(currentSuggestions => {
+              return currentSuggestions.map(suggestion => {
+                if (suggestion.id === updatedSuggestion.id) {
+                  return { ...suggestion, ...updatedSuggestion };
                 }
-                return user;
+                return suggestion;
               });
             });
-        console.log("UPDATE: " + users)
+        console.log("UPDATE: " + suggestions)
 
         } catch (error) {
             console.log(error)
-            console.log("Couldn't create new USER")
+            console.log("Couldn't create new suggestion")
         }
     }
     
@@ -91,7 +91,7 @@
 	<DropdownMenu.Content class="w-[160px]" align="end">
         <DropdownMenu.Item on:click={() => {
             dialogOpen = true
-        }}>Edit User</DropdownMenu.Item>
+        }}>Edit suggestion</DropdownMenu.Item>
 		<DropdownMenu.Separator />
 		  <DropdownMenu.Item on:click={() => {
         alertOpen = true
@@ -104,29 +104,29 @@
       <Dialog.Header>
         <Dialog.Title>Edit profile</Dialog.Title>
         <Dialog.Description>
-          Make changes to your user here, Click save to save changes.
+          Make changes to your suggestion here, Click save to save changes.
         </Dialog.Description>
       </Dialog.Header>
       <div class="grid gap-4 py-4">
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="name" class="text-right">Name</Label>
-          <Input id="name" bind:value={user.name} class="col-span-3" />
+          <Input id="name" bind:value={suggestion.name} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
-          <Label for="telephone_number" class="text-right">Phone Number</Label>
-          <Input id="telephone_number" bind:value={user.telephone_number} class="col-span-3" />
+          <Label for="creator_id" class="text-right">Creator ID</Label>
+          <Input id="creator_id" bind:value={suggestion.creator_id} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
-          <Label for="email" class="text-right">email</Label>
-          <Input id="email" type="email" bind:value={user.email} class="col-span-3" />
+          <Label for="machine_id" class="text-right">Machine ID</Label>
+          <Input id="machine_id" bind:value={suggestion.machine_id} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
-          <Label for="company_name" class="text-right">Company Name</Label>
-          <Input  id="company_name" bind:value={user.company_name} class="col-span-3" />
+          <Label for="description" class="text-right">Description</Label>
+          <Input  id="description" bind:value={suggestion.description} class="col-span-3" />
         </div>
       </div>
       <Dialog.Footer>
-        <Button type="submit" on:click={() => updateUser(user)}>Save changes</Button>
+        <Button type="submit" on:click={() => updateSuggestion(suggestion)}>Save changes</Button>
       </Dialog.Footer>
     </Dialog.Content>
 </Dialog.Root>
@@ -136,12 +136,12 @@
     <AlertDialog.Header>
       <AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
       <AlertDialog.Description>
-        This action cannot be undone. This will permanently delete your user from our servers.
+        This action cannot be undone. This will permanently delete your suggestion from our servers.
       </AlertDialog.Description>
     </AlertDialog.Header>
     <AlertDialog.Footer>
       <AlertDialog.Cancel>CANCEL</AlertDialog.Cancel>
-      <AlertDialog.Action class="bg-red-500" on:click={() => deleteUser(user.id)} >DELETE</AlertDialog.Action>
+      <AlertDialog.Action class="bg-red-500" on:click={() => deleteSuggestion(suggestion.id)} >DELETE</AlertDialog.Action>
     </AlertDialog.Footer>
   </AlertDialog.Content>
 </AlertDialog.Root>

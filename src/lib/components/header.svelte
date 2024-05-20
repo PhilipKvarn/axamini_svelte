@@ -31,6 +31,9 @@
         <a href="/tasks"><div class="items-center">
           <Button variant="link" to="/tasks" class="w-full text-2xl text-white font-semibold">Tasks</Button>
         </div></a>
+        <a href="/suggestions"><div class="items-center">
+          <Button variant="link" to="/users" class="w-full text-2xl text-white font-semibold">Suggestions</Button>
+        </div></a>
         <a href="/users"><div class="items-center">
           <Button variant="link" to="/users" class="w-full text-2xl text-white font-semibold">Users</Button>
         </div></a>
