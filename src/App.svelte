@@ -22,7 +22,6 @@
     <Route path="/tasks" component={Tasks} />
     <Route path="/users" component={Users} />
   </Router>
-  <!-- <Machines></Machines> -->
 </main>
 
 
