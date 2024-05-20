@@ -4,24 +4,30 @@
     import { Label } from "$lib/components/ui/label/index.js";
     import { Input } from "$lib/components/ui/input/index.js";
 
-    import { machines } from "$lib/stores";
+    import { tasks } from "$lib/stores";
     import {Plus} from 'lucide-svelte';
 
     function handleSubmit(event){
         
         const formData = new FormData(event.target);
 
-        const newMachine = Object.fromEntries(formData.entries());
-        console.log(newMachine)
+        let newTask = Object.fromEntries(formData.entries());
+        
+        for (const key in newTask){
+            let value = newTask[key]
+            if(value == ''){newTask[key]=null}
+        }
 
-        createNewMachine(newMachine)
+        console.log(newTask)
+
+        createNewTask(newTask)
 
     }
 
-    async function createNewMachine(data){
+    async function createNewTask(data){
 
         try {
-            const response = await fetch('http://localhost:1738/machine',{
+            const response = await fetch('http://localhost:1738/task',{
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -35,7 +41,7 @@
         } catch (error) {
             console.log(error)
             console.log("Couldn't create new machine")
-            machines.update(existingMachines => [...existingMachines, data]);
+            machines.update(existingTasks => [...existingTasks, data]);
         }
 
     }
@@ -59,16 +65,24 @@
                 <Input id="name" name="name" placeholder="" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-                <Input id="mechanic_id" name="mechanic_id" placeholder="Mechanic_Id" class="col-span-3" />
+                <Label for="next_execution_date" class="text-right">Next Date</Label>
+                <Input id="next_execution_date" name="next_execution_date" placeholder="Next Date" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="status" class="text-right">Status</Label>
-                <Input id="status" name="status" placeholder="Status" class="col-span-3" />
+                <Label for="interval_days" class="text-right">Interval</Label>
+                <Input id="interval_days" name="interval_days" placeholder="Interval" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="urgency" class="text-right">Urgency</Label>
-                <Input id="urgency" name="urgency" placeholder="Urgency" class="col-span-3" />
+                <Label for="execution_time" class="text-right">Execution Time</Label>
+                <Input id="execution_time" name="execution_time" placeholder="Execution Time" class="col-span-3" />
+                </div>
+                <div class="grid grid-cols-4 items-center gap-4">
+                <Label for="machine_id" class="text-right">Machine ID</Label>
+                <Input id="machine_id" name="machine_id" placeholder="Machine ID" class="col-span-3" />
+                </div>
+                <div class="grid grid-cols-4 items-center gap-4">
+                <Label for="description" class="text-right">Description</Label>
+                <Input id="description" name="description" placeholder="Description" class="col-span-3" />
                 </div>
                 <Dialog.Footer>
                     <Button class="bg-green-500" type="submit">CREATE MACHINE</Button>

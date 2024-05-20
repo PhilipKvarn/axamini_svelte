@@ -1,7 +1,7 @@
 
 <script>
     import * as Table from "$lib/components/ui/table";
-    import { tasks } from "$lib/stores";
+    import { users } from "$lib/stores";
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
     import TaskDropdown from "./task-dropdown.svelte";
@@ -14,15 +14,15 @@
         throw new Error(response.statusText);
       }
       const data = await response.json();
-      tasks.set(data);
-      console.log($tasks)
+      users.set(data);
+      console.log($users)
     } catch (error) {
-      //  DUMMY TASKS NÄR MAN INTE HAR IGÅNG DATABASEN 
-      //  DUMMY TASKS NÄR MAN INTE HAR IGÅNG DATABASEN 
-      //  DUMMY TASKS NÄR MAN INTE HAR IGÅNG DATABASEN 
-      //  DUMMY TASKS NÄR MAN INTE HAR IGÅNG DATABASEN 
-      //  DUMMY TASKS NÄR MAN INTE HAR IGÅNG DATABASEN 
-      tasks.set([
+      //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
+      //  DUMMY users NÄR MAN INTE HAR IGÅNG DATABASEN 
+      users.set([
         { id: '1', name: 'Städa', next_execution_date: '24-08-12', interval_days: '7', execution_time: '120', machine_id:"1",description:"" },
         { id: '2', name: 'Slipa', next_execution_date: '24-08-04', interval_days: '31', execution_time: '60', machine_id:"2",description:"" },
         { id: '3', name: 'Betala Skatt', next_execution_date: '0', interval_days: '0', execution_time: '0', machine_id:"3",description:"Det finns ingen information att läsa här" },
@@ -40,26 +40,24 @@
           <Table.Row>
             <Table.Head class="w-[100px]">id</Table.Head>
             <Table.Head>Name</Table.Head>
-            <Table.Head>Next Date</Table.Head>
-            <Table.Head class="text-right">Interval</Table.Head>
-            <Table.Head>Time</Table.Head>
-            <Table.Head>maskin id</Table.Head>
-            <Table.Head>info</Table.Head>
+            <Table.Head>Phnoe Numbere :D</Table.Head>
+            <Table.Head class="text-right">email</Table.Head>
+            <Table.Head>Company</Table.Head>
             <Table.Head><MachineForm></MachineForm></Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-            {#each $tasks as task }
+            {#each $users as user }
               <Table.Row>
-                <Table.Cell class="font-medium">{task.id}</Table.Cell>
-                <Table.Cell>{task.name}</Table.Cell>
-                <Table.Cell>{task.next_execution_date}</Table.Cell>
-                <Table.Cell>{task.interval_days}</Table.Cell>
-                <Table.Cell>{task.execution_time}</Table.Cell>
-                <Table.Cell>{task.machine_id}</Table.Cell>
-                <Table.Cell>{task.description}</Table.Cell>
+                <Table.Cell class="font-medium">{user.id}</Table.Cell>
+                <Table.Cell>{user.name}</Table.Cell>
+                <Table.Cell>{user.next_execution_date}</Table.Cell>
+                <Table.Cell>{user.interval_days}</Table.Cell>
+                <Table.Cell>{user.execution_time}</Table.Cell>
+                <Table.Cell>{user.machine_id}</Table.Cell>
+                <Table.Cell>{user.description}</Table.Cell>
                 <Table.Cell>
-                  <TaskDropdown {task}></TaskDropdown>
+                  <TaskDropdown {user}></TaskDropdown>
                 </Table.Cell>
               </Table.Row>
             {/each}

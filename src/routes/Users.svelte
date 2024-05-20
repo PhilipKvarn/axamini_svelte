@@ -9,10 +9,7 @@
   
   
   <main>
-    <h1>WELCOME TO USERS</h1>
-    <h1>WELCOME TO USERS</h1>
-    <h1>WELCOME TO USERS</h1>
-    <h1>WELCOME TO USERS</h1>
+    <Table.Users></Table.Users>
   </main>
   
   

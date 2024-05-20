@@ -5,7 +5,7 @@
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
     import TaskDropdown from "./task-dropdown.svelte";
-    import MachineForm from "./machine-form.svelte";
+    import TaskForm from "./task-form.svelte";
 
     onMount(async () => {
     try {
@@ -41,11 +41,11 @@
             <Table.Head class="w-[100px]">id</Table.Head>
             <Table.Head>Name</Table.Head>
             <Table.Head>Next Date</Table.Head>
-            <Table.Head class="text-right">Interval</Table.Head>
+            <Table.Head>Interval</Table.Head>
             <Table.Head>Time</Table.Head>
             <Table.Head>maskin id</Table.Head>
             <Table.Head>info</Table.Head>
-            <Table.Head><MachineForm></MachineForm></Table.Head>
+            <Table.Head><TaskForm></TaskForm></Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
