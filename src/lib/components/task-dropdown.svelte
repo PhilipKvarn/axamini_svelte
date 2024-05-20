@@ -13,11 +13,12 @@
     export let task;
     let dialogOpen = false;
     let alertOpen = false;
+    console.log(task)
 
 
     //const machine = $machines.find(machine => machine.id == machineId);
 
-    async function deleteMachine(id){
+    async function deleteTask(id){
 
       try {
             const response = await fetch('http://localhost:1738/task',{
@@ -149,7 +150,7 @@
     </AlertDialog.Header>
     <AlertDialog.Footer>
       <AlertDialog.Cancel>CANCEL</AlertDialog.Cancel>
-      <AlertDialog.Action class="bg-red-500" on:click={() => deleteMachine(task.id)} >DELETE</AlertDialog.Action>
+      <AlertDialog.Action class="bg-red-500" on:click={() => deleteTask(task.id)} >DELETE</AlertDialog.Action>
     </AlertDialog.Footer>
   </AlertDialog.Content>
 </AlertDialog.Root>

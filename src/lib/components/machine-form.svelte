@@ -33,10 +33,11 @@
             if(response.status != 200){
                 throw error
             }
+            machines.update(existingMachines => [...existingMachines, data]);
         } catch (error) {
             console.log(error)
             console.log("Couldn't create new machine")
-            machines.update(existingMachines => [...existingMachines, data]);
+            
         }
 
     }
@@ -61,7 +62,7 @@
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
                 <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-                <Input id="mechanic_id" name="mechanic_id" placeholder="Mechanic_Id" class="col-span-3" />
+                <Input id="mechanic_id" required name="mechanic_id" placeholder="Mechanic_Id" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
                 <Label for="status" class="text-right">Status</Label>

@@ -1,19 +1,27 @@
 
 <script>
     import * as Table from "$lib/components/ui/table";
+    import {getLoggedIn} from "$lib/utils"
     import { users } from "$lib/stores";
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
-    import TaskDropdown from "./task-dropdown.svelte";
-    import MachineForm from "./machine-form.svelte";
+    import UserDropdown from "./user-dropdown.svelte";
+    import UserForm from "./user-form.svelte";
+    import { navigate } from 'svelte-routing';
 
     onMount(async () => {
     try {
+      if(!await getLoggedIn()){
+        navigate("/login");
+        return;
+      }
+      
       const response = await fetch('http://localhost:1738/users');
       if (response.status != 200) {
         throw new Error(response.statusText);
       }
       const data = await response.json();
+      console.log("hello beautiful people")
       users.set(data);
       console.log($users)
     } catch (error) {
@@ -40,10 +48,10 @@
           <Table.Row>
             <Table.Head class="w-[100px]">id</Table.Head>
             <Table.Head>Name</Table.Head>
-            <Table.Head>Phnoe Numbere :D</Table.Head>
+            <Table.Head>Phone Number</Table.Head>
             <Table.Head>email</Table.Head>
             <Table.Head>Company</Table.Head>
-            <Table.Head><MachineForm></MachineForm></Table.Head>
+            <Table.Head><UserForm></UserForm></Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -55,7 +63,7 @@
                 <Table.Cell>{user.email}</Table.Cell>
                 <Table.Cell>{user.company_name}</Table.Cell>
                 <Table.Cell>
-                  <TaskDropdown {user}></TaskDropdown>
+                  <UserDropdown {user}></UserDropdown>
                 </Table.Cell>
               </Table.Row>
             {/each}

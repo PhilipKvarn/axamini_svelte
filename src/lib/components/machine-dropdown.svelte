@@ -13,6 +13,7 @@
     export let machine;
     let dialogOpen = false;
     let alertOpen = false;
+    console.log(machine)
 
 
     //const machine = $machines.find(machine => machine.id == machineId);
@@ -114,7 +115,7 @@
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-          <Input id="mechanic_id" bind:value={machine.mechanic_id} class="col-span-3" />
+          <Input id="mechanic_id" required bind:value={machine.mechanic_id} class="col-span-3" />
         </div>
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="status" class="text-right">Status</Label>

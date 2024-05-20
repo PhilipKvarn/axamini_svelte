@@ -21,7 +21,7 @@
     async function createNewMachine(data){
 
         try {
-            const response = await fetch('http://localhost:1738/machine',{
+            const response = await fetch('http://localhost:1738/user',{
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -33,10 +33,10 @@
             if(response.status != 200){
                 throw error
             }
+            users.update(existingUsers => [...existingUsers, data]);
         } catch (error) {
             console.log(error)
-            console.log("Couldn't create new machine")
-            machines.update(existingMachines => [...existingMachines, data]);
+            console.log("Couldn't create new user")
         }
 
     }
@@ -49,9 +49,9 @@
         </Dialog.Trigger>
         <Dialog.Content class="sm:max-w-[425px]">
         <Dialog.Header>
-            <Dialog.Title>Create Machine</Dialog.Title>
+            <Dialog.Title>Create User</Dialog.Title>
             <Dialog.Description>
-                Create a new machine here. Click save when you're done.
+                Create a new user here. Click save when you're done.
             </Dialog.Description>
         </Dialog.Header>
             <form on:submit|preventDefault={handleSubmit} class="grid gap-4 py-4">
@@ -60,19 +60,19 @@
                 <Input id="name" name="name" placeholder="" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-                <Input id="mechanic_id" name="mechanic_id" placeholder="Mechanic_Id" class="col-span-3" />
+                <Label for="telephone_number" class="text-right">Phone Number</Label>
+                <Input id="telephone_number" name="telephone_number" placeholder="Phone Number" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="status" class="text-right">Status</Label>
-                <Input id="status" name="status" placeholder="Status" class="col-span-3" />
+                <Label for="email" class="text-right">email</Label>
+                <Input id="email" name="email" placeholder="email" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="urgency" class="text-right">Urgency</Label>
-                <Input id="urgency" name="urgency" placeholder="Urgency" class="col-span-3" />
+                <Label for="company_name" class="text-right">Company Name</Label>
+                <Input id="company_name" name="company_name" placeholder="Company Name" class="col-span-3" />
                 </div>
                 <Dialog.Footer>
-                    <Button class="bg-green-500" type="submit">CREATE MACHINE</Button>
+                    <Button class="bg-green-500" type="submit">CREATE USER</Button>
                 </Dialog.Footer>
             </form>
         </Dialog.Content>

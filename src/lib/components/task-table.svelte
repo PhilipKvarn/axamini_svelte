@@ -2,13 +2,20 @@
 <script>
     import * as Table from "$lib/components/ui/table";
     import { tasks } from "$lib/stores";
+    import {getLoggedIn} from "$lib/utils"
     import { onMount } from 'svelte';
     import * as Dialog from "$lib/components/ui/dialog/index.js";
     import TaskDropdown from "./task-dropdown.svelte";
     import TaskForm from "./task-form.svelte";
+    import { navigate } from 'svelte-routing';
 
     onMount(async () => {
     try {
+      if(!await getLoggedIn()){
+        navigate("/login");
+        return;
+      }
+
       const response = await fetch('http://localhost:1738/tasks');
       if (response.status != 200) {
         throw new Error(response.statusText);

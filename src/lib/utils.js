@@ -6,7 +6,13 @@ import { account } from "$lib/stores";
 
 export async function getLoggedIn() {
     try {
-        const response = await fetch('http://localhost:1738/machine');
+        const response = await fetch('http://localhost:1738/loggedin',{
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
         if (response.status === 200) {
             const data = await response.json();
             account.set(data);

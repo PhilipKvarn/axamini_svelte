@@ -41,10 +41,11 @@
             if(response.status != 200){
                 throw error
             }
+            tasks.update(existingTasks => [...existingTasks, data]);
         } catch (error) {
             console.log(error)
             console.log("Couldn't create new machine")
-            machines.update(existingTasks => [...existingTasks, data]);
+            
         }
 
     }

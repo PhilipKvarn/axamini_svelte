@@ -34,6 +34,7 @@
                     throw error
                 }
                 verification = true
+                document.querySelector("#send").innerHTML = "SEND CODE"
             } catch (error) {
                 console.log(error)
                 console.log("Couldn't login")
@@ -88,9 +89,9 @@
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
                 <Label for="code" class="text-right">Code:</Label>
-                <Input id="code" name="code" placeholder="Mechanic_Id" class="col-span-3" />
+                <Input id="code" name="code" placeholder="Code" class="col-span-3" />
                 </div>
-                <Button class="bg-blue-500" type="submit">CREATE MACHINE</Button>
+                <Button id="send" class="bg-blue-500" type="submit">GET CODE</Button>
             </form>
         </div>
     </div>
