@@ -2,6 +2,22 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 
+import { account } from "$lib/stores";
+
+export async function getLoggedIn() {
+    try {
+        const response = await fetch('http://localhost:1738/machine');
+        if (response.status === 200) {
+            const data = await response.json();
+            account.set(data);
+            return true;
+        } else return false;
+    } catch (error) {
+        return false;
+    }
+}
+
+
 export function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }
@@ -46,3 +62,4 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+

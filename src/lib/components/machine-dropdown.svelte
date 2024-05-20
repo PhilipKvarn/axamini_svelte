@@ -22,6 +22,7 @@
       try {
             const response = await fetch('http://localhost:1738/machine',{
             method: 'DELETE',
+            credentials: 'include',
             headers: {
             'Content-Type': 'application/json',
             },
@@ -47,6 +48,7 @@
       try {
             const response = await fetch('http://localhost:1738/machine',{
             method: 'Put',
+            credentials: 'include',
             headers: {
             'Content-Type': 'application/json',
             },

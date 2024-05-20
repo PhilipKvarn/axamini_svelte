@@ -31,6 +31,7 @@
         try {
             const response = await fetch('http://localhost:1738/task',{
             method: 'POST',
+            credentials: 'include',
             headers: {
             'Content-Type': 'application/json',
             },

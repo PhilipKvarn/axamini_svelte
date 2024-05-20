@@ -8,13 +8,62 @@
     import Header from "$lib/components/header.svelte";
     import * as Table from "$lib/components/tables";
     
-    function handleSubmit(event){
+    let verification = false; 
+
+    async function handleSubmit(event){
         
         const formData = new FormData(event.target);
 
-        const loginfo = Object.fromEntries(formData.entries());
+        const loginData = Object.fromEntries(formData.entries());
 
-        console.log(JSON.stringify(loginfo))
+        if(!verification){
+            try {
+                const response = await fetch('http://localhost:1738/login',{
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+                
+                });
+                /* const dat = await response.json(); */
+                console.log(response)
+                console.log("logging in")
+                if(response.status != 200){
+                    throw error
+                }
+                verification = true
+            } catch (error) {
+                console.log(error)
+                console.log("Couldn't login")
+            }
+        }
+        else{
+            try {
+                console.log("verifying")
+                const response = await fetch('http://localhost:1738/verify',{
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+                
+                });
+                const dat = await response.json();
+                console.log(dat)
+                console.log("verifying in")
+                if(response.status != 200){
+                    throw error
+                }
+                verification = true
+            } catch (error) {
+                console.log(error)
+                console.log("Couldn't login")
+            }
+        }
+        
 
     }
 
@@ -34,24 +83,14 @@
         <div class="grid gap-6 sm:w-[350px]">
             <form on:submit|preventDefault={handleSubmit} class="grid gap-4 py-4">
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="name" class="text-right">Name</Label>
-                <Input id="name" name="name" placeholder="" class="col-span-3" />
+                <Label for="email" class="text-right">E-mail:</Label>
+                <Input id="email" name="email" type="email" placeholder="E-Mail" class="col-span-3" />
                 </div>
                 <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="mechanic_id" class="text-right">Mechanic ID</Label>
-                <Input id="mechanic_id" name="mechanic_id" placeholder="Mechanic_Id" class="col-span-3" />
+                <Label for="code" class="text-right">Code:</Label>
+                <Input id="code" name="code" placeholder="Mechanic_Id" class="col-span-3" />
                 </div>
-                <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="status" class="text-right">Status</Label>
-                <Input id="status" name="status" placeholder="Status" class="col-span-3" />
-                </div>
-                <div class="grid grid-cols-4 items-center gap-4">
-                <Label for="urgency" class="text-right">Urgency</Label>
-                <Input id="urgency" name="urgency" placeholder="Urgency" class="col-span-3" />
-                </div>
-            
-                    <Button class="bg-green-500" type="submit">CREATE MACHINE</Button>
-                
+                <Button class="bg-blue-500" type="submit">CREATE MACHINE</Button>
             </form>
         </div>
     </div>
