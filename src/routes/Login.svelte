@@ -7,6 +7,7 @@
     import "../app.css";
     import Header from "$lib/components/header.svelte";
     import * as Table from "$lib/components/tables";
+    import { navigate } from 'svelte-routing';
     
     let verification = false; 
 
@@ -58,7 +59,8 @@
                 if(response.status != 200){
                     throw error
                 }
-                verification = true
+                navigate("/machines");
+                verification = false
             } catch (error) {
                 console.log(error)
                 console.log("Couldn't login")

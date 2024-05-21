@@ -23,7 +23,7 @@
       </Sheet.Header>
       <div class="grid gap-4 py-4">
         <a href="/login"><div class="items-center">
-          <Button variant="link" class="w-full text-2xl text-white font-semibold">Index</Button>
+          <Button variant="link" class="w-full text-2xl text-white font-semibold">Login</Button>
         </div></a>
         <a href="/machines"><div class="items-center">
           <Button variant="link" to="/machines" class="w-full text-2xl text-white font-semibold">Machines</Button>
