@@ -63,9 +63,9 @@
         </Dialog.Trigger>
         <Dialog.Content class="sm:max-w-[425px]">
         <Dialog.Header>
-            <Dialog.Title>Create Machine</Dialog.Title>
+            <Dialog.Title>Create task</Dialog.Title>
             <Dialog.Description>
-                Create a new machine here. Click save when you're done.
+                Create a new task here. Click save when you're done.
             </Dialog.Description>
         </Dialog.Header>
             <form on:submit|preventDefault={handleSubmit} class="grid gap-4 py-4">
@@ -93,8 +93,12 @@
                 <Label for="description" class="text-right">Description</Label>
                 <Input id="description" name="description" placeholder="Description" class="col-span-3" />
                 </div>
+                <div class="grid grid-cols-4 items-center gap-4">
+                <Label for="completed" class="text-right">Completed</Label>
+                <Input type="checkbox" id="completed" name="completed" placeholder="Completed" class="col-span-3" />
+                </div>
                 <Dialog.Footer>
-                    <Button class="bg-green-500" type="submit">CREATE MACHINE</Button>
+                    <Button class="bg-green-500" type="submit">CREATE TASKS</Button>
                 </Dialog.Footer>
             </form>
         

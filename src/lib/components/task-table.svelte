@@ -52,6 +52,7 @@
             <Table.Head>Time</Table.Head>
             <Table.Head>maskin id</Table.Head>
             <Table.Head>info</Table.Head>
+            <Table.Head>Completed</Table.Head>
             <Table.Head><TaskForm></TaskForm></Table.Head>
           </Table.Row>
         </Table.Header>
@@ -65,6 +66,7 @@
                 <Table.Cell>{task.execution_time}</Table.Cell>
                 <Table.Cell>{task.machine_id}</Table.Cell>
                 <Table.Cell>{task.description}</Table.Cell>
+                <Table.Cell>{task.completed}</Table.Cell>
                 <Table.Cell>
                   <TaskDropdown {task}></TaskDropdown>
                 </Table.Cell>

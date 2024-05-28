@@ -45,7 +45,9 @@
     }
 
     async function updateTask(updatedTask){
-
+        console.log("updaterar mskin")
+        console.log(updatedTask)
+        console.log("updaterar mskin")
       try {
             const response = await fetch('http://localhost:1738/task',{
             method: 'Put',
@@ -136,6 +138,11 @@
           <Label for="description" class="text-right">info</Label>
           <Input  id="description" bind:value={task.description} class="col-span-3" />
         </div>
+        <div class="grid grid-cols-4 items-center gap-4">
+          <Label for="completed" class="text-right">Completed</Label>
+
+          <Input type="checkbox" id="completed" name="completed" bind:checked={task.completed} on:click={()=>{task.completed = !task.completed; console.log(task)}} class="col-span-3" />
+          </div>
       </div>
       <Dialog.Footer>
         <Button type="submit" on:click={() => updateTask(task)}>Save changes</Button>
