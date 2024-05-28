@@ -30,7 +30,7 @@
             body: JSON.stringify({"id":id}),
             });
             console.log(response)
-            if(response.status != 200){
+            if(!response.ok){
                 throw error
             }
 
@@ -56,7 +56,7 @@
             body: JSON.stringify(updatedMachine),
             });
             console.log(response)
-            if(response.status != 200){
+            if(!response.ok){
                 throw error
             }
 

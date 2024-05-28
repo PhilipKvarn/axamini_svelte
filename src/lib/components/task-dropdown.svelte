@@ -30,14 +30,14 @@
             body: JSON.stringify({"id":id}),
             });
             console.log(response)
-            if(response.status != 200){
+            if(response.ok){
+              tasks.update((currentTasks) => {
+              return currentTasks.filter(task => task.id !== id);
+              });
+            }
+            else{
                 throw error
             }
-
-            tasks.update((currentTasks) => {
-              return currentTasks.filter(task => task.id !== id);
-            });
-
         } catch (error) {
             console.log(error)
             console.log("Couldn't create new task")
@@ -56,18 +56,21 @@
             body: JSON.stringify(updatedTask),
             });
             console.log(response)
-            if(response.status != 200){
+            if(response.ok){
+              tasks.update(currentTasks => {
+                return currentTasks.map(task => {
+                  if (task.id === updatedTask.id) {
+                    return { ...task, ...updatedTask };
+                  }
+                  return task;
+                });
+              });
+            }
+            else{
                 throw error
             }
 
-            tasks.update(currentTasks => {
-              return currentTasks.map(task => {
-                if (task.id === updatedTask.id) {
-                  return { ...task, ...updatedTask };
-                }
-                return task;
-              });
-            });
+            
         console.log("UPDATE: " + tasks)
 
         } catch (error) {

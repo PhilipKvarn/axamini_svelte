@@ -29,14 +29,14 @@
             body: JSON.stringify({"id":id}),
             });
             console.log(response)
-            if(response.status != 200){
+            if(response.ok){
+              users.update((currentUsers) => {
+                return currentUsers.filter(user => user.id !== id);
+              });
+            }
+            else{
                 throw error
             }
-
-            users.update((currentUsers) => {
-              return currentUsers.filter(user => user.id !== id);
-            });
-
         } catch (error) {
             console.log(error)
             console.log("Couldn't create new user")
@@ -55,18 +55,21 @@
             body: JSON.stringify(updatedUser),
             });
             console.log(response)
-            if(response.status != 200){
+            if(response.ok){
+              users.update(currentUsers => {
+                return currentUsers.map(user => {
+                  if (user.id === updatedUser.id) {
+                    return { ...user, ...updatedUser };
+                  }
+                  return user;
+                });
+              });
+            }
+            else{
                 throw error
             }
 
-            users.update(currentUsers => {
-              return currentUsers.map(user => {
-                if (user.id === updatedUser.id) {
-                  return { ...user, ...updatedUser };
-                }
-                return user;
-              });
-            });
+            
         console.log("UPDATE: " + users)
 
         } catch (error) {

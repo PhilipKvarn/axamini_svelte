@@ -29,7 +29,7 @@
             body: JSON.stringify({"id":id}),
             });
             console.log(response)
-            if(response.status != 200){
+            if(!response.ok){
                 throw error
             }
 
@@ -55,7 +55,7 @@
             body: JSON.stringify(updatedSuggestion),
             });
             console.log(response)
-            if(response.status != 200){
+            if(!response.ok){
                 throw error
             }
 
@@ -67,7 +67,7 @@
                 return suggestion;
               });
             });
-        console.log("UPDATE: " + suggestions)
+            console.log("UPDATE: " + suggestions)
 
         } catch (error) {
             console.log(error)
