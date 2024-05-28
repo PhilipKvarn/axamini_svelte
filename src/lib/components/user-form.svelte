@@ -30,7 +30,12 @@
             body: JSON.stringify(data),
             });
             console.log(response)
-            if(response.status != 200){
+            if(response.ok){
+                const responseData = await response.json();
+                console.log(responseData)
+                data.id = responseData.id;
+            }
+            else{
                 throw error
             }
             users.update(existingUsers => [...existingUsers, data]);
