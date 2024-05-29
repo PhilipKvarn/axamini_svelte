@@ -11,6 +11,9 @@
 
 
     export let task;
+    if(task.completed == undefined){
+      task.completed = false
+    }
     let dialogOpen = false;
     let alertOpen = false;
     console.log(task)
@@ -141,7 +144,7 @@
         <div class="grid grid-cols-4 items-center gap-4">
           <Label for="completed" class="text-right">Completed</Label>
 
-          <Input type="checkbox" id="completed" name="completed" bind:checked={task.completed} on:click={()=>{task.completed = !task.completed; console.log(task)}} class="col-span-3" />
+          <Input type="checkbox" id="completed" name="completed" bind:value={task.completed} on:click={()=>{task.completed = !task.completed;}} class="col-span-3" />
           </div>
       </div>
       <Dialog.Footer>

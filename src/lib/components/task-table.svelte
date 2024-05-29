@@ -45,28 +45,29 @@
         <Table.Caption>Lista av alla tasks.</Table.Caption>
         <Table.Header>
           <Table.Row>
-            <Table.Head class="w-[100px]">id</Table.Head>
+
             <Table.Head>Name</Table.Head>
+            <Table.Head>Completed</Table.Head>
+            <Table.Head>info</Table.Head>
             <Table.Head>Next Date</Table.Head>
             <Table.Head>Interval</Table.Head>
             <Table.Head>Time</Table.Head>
             <Table.Head>maskin id</Table.Head>
-            <Table.Head>info</Table.Head>
-            <Table.Head>Completed</Table.Head>
+            
             <Table.Head><TaskForm></TaskForm></Table.Head>
           </Table.Row>
         </Table.Header>
         <Table.Body>
             {#each $tasks as task }
               <Table.Row>
-                <Table.Cell class="font-medium">{task.id}</Table.Cell>
                 <Table.Cell>{task.name}</Table.Cell>
+                <Table.Cell>{task.completed}</Table.Cell>
+                <Table.Cell>{task.description}</Table.Cell>
                 <Table.Cell>{task.next_execution_date}</Table.Cell>
                 <Table.Cell>{task.interval_days}</Table.Cell>
                 <Table.Cell>{task.execution_time}</Table.Cell>
                 <Table.Cell>{task.machine_id}</Table.Cell>
-                <Table.Cell>{task.description}</Table.Cell>
-                <Table.Cell>{task.completed}</Table.Cell>
+
                 <Table.Cell>
                   <TaskDropdown {task}></TaskDropdown>
                 </Table.Cell>

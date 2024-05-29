@@ -42,6 +42,7 @@
                 const responseData = await response.json();
                 console.log(responseData)
                 data.id = responseData.id;
+                data.completed = false
             }
             else{
                 throw error
@@ -93,10 +94,10 @@
                 <Label for="description" class="text-right">Description</Label>
                 <Input id="description" name="description" placeholder="Description" class="col-span-3" />
                 </div>
-                <div class="grid grid-cols-4 items-center gap-4">
+                <!-- <div class="grid grid-cols-4 items-center gap-4">
                 <Label for="completed" class="text-right">Completed</Label>
                 <Input type="checkbox" id="completed" name="completed" placeholder="Completed" class="col-span-3" />
-                </div>
+                </div> -->
                 <Dialog.Footer>
                     <Button class="bg-green-500" type="submit">CREATE TASKS</Button>
                 </Dialog.Footer>
